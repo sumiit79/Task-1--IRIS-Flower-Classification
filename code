@@ -1,0 +1,692 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "private_outputs": true,
+      "provenance": [],
+      "collapsed_sections": [
+        "pJIpCW3unF3-",
+        "pZa-XCo__sy-",
+        "uckG6_p7Kifq"
+      ],
+      "authorship_tag": "ABX9TyMXyw6h3ZFlTmQ0Bj/0ltVP",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/data-enthusiast-shubhs/OIBSIP/blob/main/Iris_ML.ipynb\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "## NAME - ***SHUBHAM OLI*** \n",
+        "## DATA SCIENCE INTERNSHIP @ OASIS INFOBYTE"
+      ],
+      "metadata": {
+        "id": "aMBrlC7li6MF"
+      }
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "## **TASK 3**"
+      ],
+      "metadata": {
+        "id": "i2IAN8kWMUZt"
+      }
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "# PROJECT NAME - **IRIS FLOWER CLASSIFICATION**"
+      ],
+      "metadata": {
+        "id": "rGCYb1-2jC2t"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "from IPython.display import Image\n",
+        "Image(url='https://editor.analyticsvidhya.com/uploads/51518iris%20img1.png', width=850)"
+      ],
+      "metadata": {
+        "id": "NaZ8IRGrq_u1"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "## Github Link\n",
+        "## https://github.com/data-enthusiast-shubhs/OIBSIP"
+      ],
+      "metadata": {
+        "id": "3GVNr9XKMbda"
+      }
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "## Problem Statement"
+      ],
+      "metadata": {
+        "id": "LGyOtA5gMf62"
+      }
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "Iris flower has 3 species: Setosa, Versicolor and Virginica, which differs according to their measurements. Now assume that you have the measurements of the iris flowers according to their species, and here your task is to train a machine learning model that can learn from the measurements of the iris species and classify them."
+      ],
+      "metadata": {
+        "id": "E8ILQIiria9l"
+      }
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "INPUT: \\\n",
+        "Sepal Length \\\n",
+        "Sepal width \\\n",
+        "Petal length \\\n",
+        "Petal width  \\\n",
+        "\n",
+        "OUTPUT:\\\n",
+        "Class of Flower"
+      ],
+      "metadata": {
+        "id": "wgC5ItfxjR-s"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "NkKGcV1SjRcy"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "## Importing Libraries"
+      ],
+      "metadata": {
+        "id": "F3l5qG_7kPri"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import numpy as np\n",
+        "import pandas as pd\n",
+        "import seaborn as sns\n",
+        "import matplotlib.pyplot as plt\n",
+        "%matplotlib inline"
+      ],
+      "metadata": {
+        "id": "umLoou_OkRLM"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "## Loading the Dataset"
+      ],
+      "metadata": {
+        "id": "u5WGCAiQkel6"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "iris = pd.read_csv('/content/Iris.csv')\n",
+        "iris.head()"
+      ],
+      "metadata": {
+        "id": "_d-VKrsXkdxc"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# Rename the complex columns name\n",
+        "iris= iris.rename(columns={'SepalLengthCm':'Sepal_Length',\n",
+        "                           'SepalWidthCm':'Sepal_Width',\n",
+        "                           'PetalLengthCm':'Petal_Length',\n",
+        "                           'PetalWidthCm':'Petal_Width'})"
+      ],
+      "metadata": {
+        "id": "tGwxlEYdmHnj"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "iris.head()"
+      ],
+      "metadata": {
+        "id": "_JIiSOEam1TS"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# checking null values\n",
+        "iris.isnull().sum()"
+      ],
+      "metadata": {
+        "id": "Tk24xgUzH03E"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# checking if the data is biased or not\n",
+        "iris ['Species'].value_counts()"
+      ],
+      "metadata": {
+        "id": "nIHv3GSekrBz"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# checking statistical features\n",
+        "iris.describe()"
+      ],
+      "metadata": {
+        "id": "q-8LzT5vlpGT"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "# Visualization "
+      ],
+      "metadata": {
+        "id": "pJIpCW3unF3-"
+      }
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "## Scatterplot"
+      ],
+      "metadata": {
+        "id": "pFN9_Fj2p_c-"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "sns.FacetGrid(iris, hue=\"Species\",height=6).map(plt.scatter,\"Petal_Length\",\"Sepal_Width\").add_legend()"
+      ],
+      "metadata": {
+        "id": "FiiCnUQUqDlZ"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "## Pairplot"
+      ],
+      "metadata": {
+        "id": "j2Jda8tiqBWP"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# visualize the whole dataset\n",
+        "sns.pairplot(iris[['Sepal_Length','Sepal_Width','Petal_Length','Petal_Width','Species']], hue=\"Species\",diag_kind='kde')"
+      ],
+      "metadata": {
+        "id": "I-AgiGj8l4xT"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "# SEPARATING INPUT COLUMNS AND THE OUTPUT COLUMNS"
+      ],
+      "metadata": {
+        "id": "ObivmYFlrq8J"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# Separate features and target\n",
+        "data=iris.values\n",
+        "\n",
+        "# slicing the matrices\n",
+        "X=data[:,0:4]\n",
+        "Y=data[:,5]\n"
+      ],
+      "metadata": {
+        "id": "jYEGTlPaqAg5"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "print(X.shape)\n",
+        "print(X)"
+      ],
+      "metadata": {
+        "id": "nEy1-ozKh0xF"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "print(Y.shape)\n",
+        "print(Y)"
+      ],
+      "metadata": {
+        "id": "hQOYd_dQr-g5"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "# SPLITTING DATA INTO TRAINING AND TESTING"
+      ],
+      "metadata": {
+        "id": "sz1QDJLHsMRw"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# split the data to train and test dataset"
+      ],
+      "metadata": {
+        "id": "ddLEjuGnsAeI"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "from sklearn.model_selection import train_test_split\n",
+        "X_train, X_test, y_train, y_test= train_test_split(X,Y, test_size=0.2)"
+      ],
+      "metadata": {
+        "id": "laIs5q8csTRv"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "print(X_train.shape)\n",
+        "print(X_train)"
+      ],
+      "metadata": {
+        "id": "QJ9eskEMsiGn"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "print(y_test.shape)\n",
+        "print(y_test)"
+      ],
+      "metadata": {
+        "id": "2AXCu5SNsrH3"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "print(X_test.shape)\n",
+        "print(X_test)"
+      ],
+      "metadata": {
+        "id": "TgtM1BMUsvmX"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "print(y_train.shape)\n",
+        "print(y_train)"
+      ],
+      "metadata": {
+        "id": "1LupConusxYn"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "# MODEL 1: SUPPORT VECTOR MACHINE ALGORITHM"
+      ],
+      "metadata": {
+        "id": "NPfyZpdWszdW"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "from sklearn.svm import SVC\n",
+        "\n",
+        "model_svc=SVC()\n",
+        "model_svc.fit(X_train,y_train)"
+      ],
+      "metadata": {
+        "id": "X58KHShqs31A"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "prediction1 = model_svc.predict(X_test)\n",
+        "\n",
+        "#calculate the accuracy\n",
+        "from sklearn.metrics import accuracy_score\n",
+        "print(accuracy_score(y_test, prediction1))"
+      ],
+      "metadata": {
+        "id": "xmqq5feNtmC_"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "# MODEL 2: LOGISTIC REGRESSION\n"
+      ],
+      "metadata": {
+        "id": "pZa-XCo__sy-"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# converting categorical variables into numbers\n",
+        "flower_mapping = {'Iris-setosa':0,'Iris-versicolor':1,'Iris-virginica':2}\n",
+        "iris['Species']=iris['Species'].map(flower_mapping)"
+      ],
+      "metadata": {
+        "id": "qFXTMqyo_XpC"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "iris.head()"
+      ],
+      "metadata": {
+        "id": "ii5qUr3S_XQP"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "iris.tail()"
+      ],
+      "metadata": {
+        "id": "wjTIPLCQfSTi"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# preparing inputs and outputs\n",
+        "X=iris [['Sepal_Length','Sepal_Width','Petal_Length','Petal_Width']].values\n",
+        "y= iris[['Species']].values"
+      ],
+      "metadata": {
+        "id": "H5romVQSAdKY"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# LOGISTIC REGRESSION\n",
+        "from sklearn.linear_model import LogisticRegression\n",
+        "model= LogisticRegression()\n",
+        "model.fit(X,y)"
+      ],
+      "metadata": {
+        "id": "7BAMwJDqAzIJ"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# accuracy"
+      ],
+      "metadata": {
+        "id": "WhXodbHiKBfZ"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "model.score(X,y)"
+      ],
+      "metadata": {
+        "id": "PWWBtfOHAzEQ"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# make prediction for all 150 species in dataset"
+      ],
+      "metadata": {
+        "id": "02cvcIGHKDXC"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "expected = y\n",
+        "predicted = model.predict(X)\n",
+        "predicted"
+      ],
+      "metadata": {
+        "id": "3z2oD30q_HuT"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# summarize the fit of the model\n",
+        "\n",
+        "from sklearn import metrics"
+      ],
+      "metadata": {
+        "id": "PFamcW_LAyuA"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "print(metrics.classification_report(expected, predicted))"
+      ],
+      "metadata": {
+        "id": "WBfj540jAyE1"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "setosa -> 0 \\\n",
+        "versicolor -> 1 \\\n",
+        "virginica ->2"
+      ],
+      "metadata": {
+        "id": "ZecGMXgfgJ7j"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# confusion metrics\n",
+        "print(metrics.confusion_matrix(expected, predicted))"
+      ],
+      "metadata": {
+        "id": "C0lRcAudAyBZ"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "# MODEL3: DECISION TREE CLASSIFIER"
+      ],
+      "metadata": {
+        "id": "AV72YSrpwTj2"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "from sklearn.tree import DecisionTreeClassifier\n",
+        "model_DTC = DecisionTreeClassifier()\n",
+        "model_DTC.fit(X_train, y_train)"
+      ],
+      "metadata": {
+        "id": "9VMnPrVSwXH1"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "prediction3= model_svc.predict(X_test)\n",
+        "\n",
+        "#calculate the accuracy\n",
+        "from sklearn.metrics import accuracy_score\n",
+        "print(accuracy_score(y_test, prediction3))"
+      ],
+      "metadata": {
+        "id": "I1zcu0YpzJIM"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "# New data for prediction"
+      ],
+      "metadata": {
+        "id": "O7DM6jvVDRzQ"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# New data for prediction\n",
+        "X_new = np.array([[3, 2, 1, 0.2], [4.9, 2.2, 3.8, 1.1], [5.3, 2.5, 4.6, 1.9]])\n",
+        "\n",
+        "# Predicting the sizes of the iris flowers\n",
+        "predicted_sizes = model.predict(X_new)\n",
+        "\n",
+        "# Output the predicted sizes\n",
+        "print(predicted_sizes)\n"
+      ],
+      "metadata": {
+        "id": "R8K2U7JdDOqC"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "setosa -> 0 \\\n",
+        "versicolor -> 1 \\\n",
+        "virginica ->2"
+      ],
+      "metadata": {
+        "id": "COq4wEdnglhv"
+      }
+    }
+  ]
+}
